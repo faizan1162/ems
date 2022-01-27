@@ -10,7 +10,7 @@ Requirement for installation and setup
 3: Mysql database file import the database and set the database details in .env file  which is placed in laravel backend api folder.
 ---------------------------------------------------------------------------------------------------
 4: For vue3 admin panel setup
-You need to install npm globally and vue cli installed globally properly
+You need to install npm globally and vue cli installed globally properly after the project setup npm install for node_modules folder
 for vue project configuration you need to go in src folder -> config folder -> constant.js file. In constant.js file APP_URL, IMAGE_URL and THUMB_URL set properly according to url for your admin api.
 --------------------------------------------------------------------------------
 this is current api url: http://localhost/ems/event-management-api/api/v1/
