@@ -41,6 +41,8 @@ In your root foler open cmd prompt and run this command
 npm install --save
 
 ### Run project
-After Succesfull setup all things run the development server for vue js run below command
->> npm run serve
+After Succesfull setup all things run the development server for vue js run below command.
+
+npm run serve
+
 After development server started open this url : http://localhost:8080/
