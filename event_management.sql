@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2022 at 01:47 AM
+-- Generation Time: Jan 27, 2022 at 04:01 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -53,7 +53,8 @@ CREATE TABLE `events` (
 INSERT INTO `events` (`id`, `event_title`, `event_description`, `event_avatar`, `event_start_date`, `event_start_time`, `event_end_date`, `event_end_time`, `event_lat`, `event_lng`, `event_location`, `is_active`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'Fever Club Service new', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'tefliyrso1643240323.jpeg', '2022-01-28', '08:00', '2022-01-29', '08:00', NULL, NULL, 'Sea View Beach Clifton Karachi., Sea View Road, D.H.A. Phase 8 Phase 8 Ext Defence Housing Authority, Karachi, Pakistan', 1, 1, 0, '2022-01-26 18:38:43', '2022-01-26 18:38:43'),
 (2, 'Dinner Party & Gif Voucher', 'Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.', 'toeisfryl1643240507.jpg', '2022-01-29', '08:45', '2022-01-30', '10:47', NULL, NULL, 'Beach Luxury Hotel - Karachi', 1, 1, 0, '2022-01-26 18:41:47', '2022-01-26 18:41:47'),
-(3, 'Testing Event three', 'testing descriptions', 'tseoilfyr1643241358.png', '2022-01-27', '07:58', '2022-01-28', '06:57', NULL, NULL, 'testing location three', 1, 1, 0, '2022-01-26 18:55:58', '2022-01-26 18:55:58');
+(3, 'Testing Event three', 'testing descriptions', 'tseoilfyr1643241358.png', '2022-01-27', '07:58', '2022-01-28', '06:57', NULL, NULL, 'testing location three', 1, 1, 0, '2022-01-26 18:55:58', '2022-01-26 18:55:58'),
+(6, 'Test My new event', 'Testing description, Testing description', 'yteosrilf1643251751.jpg', '2022-01-29', '10:50', '2022-01-29', '12:54', NULL, NULL, 'Testting location', 1, 1, 0, '2022-01-26 21:49:11', '2022-01-26 21:49:11');
 
 -- --------------------------------------------------------
 
@@ -79,7 +80,12 @@ INSERT INTO `event_participants` (`id`, `event_id`, `user_id`, `status`, `create
 (2, 2, 523, 1, '2022-01-26 18:53:35', '2022-01-26 18:54:41'),
 (3, 2, 521, 1, '2022-01-26 18:53:40', '2022-01-26 18:54:23'),
 (4, 3, 515, 0, '2022-01-26 18:56:11', '2022-01-26 18:56:11'),
-(5, 3, 520, 0, '2022-01-26 18:56:16', '2022-01-26 18:56:16');
+(5, 3, 520, 1, '2022-01-26 18:56:16', '2022-01-26 21:39:03'),
+(6, 3, 521, 1, '2022-01-26 21:39:18', '2022-01-26 21:39:32'),
+(7, 3, 517, 0, '2022-01-26 21:47:10', '2022-01-26 21:47:10'),
+(8, 3, 511, 1, '2022-01-26 21:47:19', '2022-01-26 21:47:34'),
+(9, 6, 523, 1, '2022-01-26 21:49:28', '2022-01-26 21:49:41'),
+(10, 6, 521, 0, '2022-01-26 21:49:57', '2022-01-26 21:49:57');
 
 -- --------------------------------------------------------
 
@@ -110,9 +116,12 @@ INSERT INTO `event_tickets` (`id`, `event_id`, `ticket_type_id`, `ticket_price`,
 (4, 2, 1, 10, 50, 0, 1, '2022-01-26 23:41:47', '2022-01-26 23:41:47'),
 (5, 2, 2, 20, 30, 0, 1, '2022-01-26 23:41:47', '2022-01-26 23:41:47'),
 (6, 2, 3, 10, 20, 2, 1, '2022-01-26 23:41:47', '2022-01-26 18:54:41'),
-(7, 3, 1, 20, 20, 0, 1, '2022-01-26 23:55:58', '2022-01-26 23:55:58'),
-(8, 3, 2, 25, 10, 0, 1, '2022-01-26 23:55:58', '2022-01-26 23:55:58'),
-(9, 3, 3, 30, 5, 0, 1, '2022-01-26 23:55:58', '2022-01-26 23:55:58');
+(7, 3, 1, 20, 20, 2, 1, '2022-01-26 23:55:58', '2022-01-26 21:47:34'),
+(8, 3, 2, 25, 10, 1, 1, '2022-01-26 23:55:58', '2022-01-26 21:39:03'),
+(9, 3, 3, 30, 5, 0, 1, '2022-01-26 23:55:58', '2022-01-26 23:55:58'),
+(16, 6, 1, 10, 50, 0, 1, '2022-01-27 02:49:12', '2022-01-27 02:49:12'),
+(17, 6, 2, 25, 10, 0, 1, '2022-01-27 02:49:12', '2022-01-27 02:49:12'),
+(18, 6, 3, 30, 5, 1, 1, '2022-01-27 02:49:12', '2022-01-26 21:49:41');
 
 -- --------------------------------------------------------
 
@@ -137,7 +146,11 @@ CREATE TABLE `event_ticket_bookings` (
 
 INSERT INTO `event_ticket_bookings` (`id`, `event_id`, `user_id`, `total_price`, `vat`, `discount`, `created_at`, `updated_at`) VALUES
 (1, 2, 521, 10, 0, 0, '2022-01-26 18:54:23', '2022-01-26 18:54:23'),
-(2, 2, 523, 10, 0, 0, '2022-01-26 18:54:41', '2022-01-26 18:54:41');
+(2, 2, 523, 10, 0, 0, '2022-01-26 18:54:41', '2022-01-26 18:54:41'),
+(3, 3, 520, 25, 0, 0, '2022-01-26 21:39:03', '2022-01-26 21:39:03'),
+(4, 3, 521, 20, 0, 0, '2022-01-26 21:39:32', '2022-01-26 21:39:32'),
+(5, 3, 511, 20, 0, 0, '2022-01-26 21:47:34', '2022-01-26 21:47:34'),
+(6, 6, 523, 30, 0, 0, '2022-01-26 21:49:41', '2022-01-26 21:49:41');
 
 -- --------------------------------------------------------
 
@@ -164,7 +177,11 @@ CREATE TABLE `event_ticket_booking_details` (
 
 INSERT INTO `event_ticket_booking_details` (`id`, `event_ticket_booking_id`, `event_id`, `user_id`, `event_ticket_type_id`, `event_ticket_type`, `event_ticket_price`, `event_ticket_qty`, `created_at`, `updated_at`) VALUES
 (1, 1, 2, 521, 3, 'Platinum', 10, 1, '2022-01-26 18:54:23', '2022-01-26 18:54:23'),
-(2, 2, 2, 523, 3, 'Platinum', 10, 1, '2022-01-26 18:54:41', '2022-01-26 18:54:41');
+(2, 2, 2, 523, 3, 'Platinum', 10, 1, '2022-01-26 18:54:41', '2022-01-26 18:54:41'),
+(3, 3, 3, 520, 2, 'Gold', 25, 1, '2022-01-26 21:39:03', '2022-01-26 21:39:03'),
+(4, 4, 3, 521, 1, 'Silver', 20, 1, '2022-01-26 21:39:32', '2022-01-26 21:39:32'),
+(5, 5, 3, 511, 1, 'Silver', 20, 1, '2022-01-26 21:47:34', '2022-01-26 21:47:34'),
+(6, 6, 6, 523, 3, 'Platinum', 30, 1, '2022-01-26 21:49:41', '2022-01-26 21:49:41');
 
 -- --------------------------------------------------------
 
@@ -259,7 +276,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `utype`, `password`, `api_token`, `email`, `full_name`, `phone`, `avatar`, `remember_token`, `lat`, `lng`, `bio`, `device_type`, `device_token`, `is_active`, `is_blocked`, `created_at`, `updated_at`) VALUES
-(1, 'admin', '$2y$10$SSWHmzaoX8cOJ9SNZXsWyOAsIpVPfmTc1duBatlAeI1d8GSPbdl8W', 'Nwpl5FlbfT6qCBZ3ThbvRCJqa8o7GbuuTO58jGnUEjMYMiHnXK9wWebbNwhI', 'admin@admin.com', 'Admin', '00000000', 'sthlolgleoe1638282111.jpg', '3B0jRQ4j5HmMyWGuTPtlDXmCfcN94DEaLKWG7zZApwp9MzoOYSY4alO5KSTD', NULL, NULL, NULL, NULL, NULL, 1, 0, '2019-09-16 13:26:54', '2022-01-26 19:14:34'),
+(1, 'admin', '$2y$10$SSWHmzaoX8cOJ9SNZXsWyOAsIpVPfmTc1duBatlAeI1d8GSPbdl8W', NULL, 'admin@admin.com', 'Admin', '00000000', 'sthlolgleoe1638282111.jpg', '3B0jRQ4j5HmMyWGuTPtlDXmCfcN94DEaLKWG7zZApwp9MzoOYSY4alO5KSTD', NULL, NULL, NULL, NULL, NULL, 1, 0, '2019-09-16 13:26:54', '2022-01-26 21:50:50'),
 (505, 'user', '$2y$10$69vM6yofA6xhUR0LqfLOUu3vPReCJ5fp65EJjDAaM2zTK96CSdCWC', 'BvWuD4lvQ0hY8MPwpxtKNIWQHy6gAAd5bATNb4o4eQiOJbRkcyCOcwoBwzi4', 'kim@yopmail.com', 'hii', '2385', 'ehlltgeoslo1605014896.jpeg', NULL, '24.9025', '67.0729', 'b I did did a good job and I', NULL, NULL, 1, 0, '2020-09-17 12:27:23', '2021-11-30 11:00:48'),
 (506, 'user', '$2y$10$SeCBpQyhtj4q2Uh090v8Yeh7d5Kx9SWUhwbyU1A8ACDUdyM9jhErq', '0HYnswOYSeXS4thd5sOyzuQsuYm1FeUyGBMzwiifFwoWC2En3gfJnUO81j77', 'test@yopmail.com', 'Abc Test', '84', 'geslololhet1610007192.jpeg', NULL, NULL, NULL, 'testing', '', '', 1, 0, '2020-09-17 12:30:59', '2021-10-14 05:52:07'),
 (507, 'user', '$2y$10$7Nl9EgJL4bWr7T1MZ1zjpe9jsdAhVS1IzUG0gasANZos1YYywr3t2', 'Vo9JHxmFQM3yG7kdHwnKwVjOof8NLXv3tiISRjoGnROqYBLzf7r14UW45OrC', 'megan@yopmail.com', 'saen q', '123456', 'looeelhgslt1601640597.jpg', NULL, '24.8709', '67.0961', 'saaaen jamshoro wala', NULL, NULL, 1, 0, '2020-09-17 13:23:26', '2021-06-21 11:17:36'),
@@ -354,31 +371,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `event_participants`
 --
 ALTER TABLE `event_participants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `event_tickets`
 --
 ALTER TABLE `event_tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `event_ticket_bookings`
 --
 ALTER TABLE `event_ticket_bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `event_ticket_booking_details`
 --
 ALTER TABLE `event_ticket_booking_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `migrations`
