@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Contracts\DashboardInterface;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
 
 /**
  * Class DashboardController
@@ -39,5 +41,14 @@ class DashboardController extends Controller
         $data['currentRevenue'] = $tSales['admin_earnings'];
         $data['sumRevenue'] = $tSales['sum_earnings'];
         return apiSuccessMessage("Dashboard Data",$data);
+    }
+    public function getSalesReport(Request $request){
+        if($request->has('event_id') && $request->has('ticket_type_id')){
+            $data['report'] = $this->dashboardInterface->salesReport($request->event_id,$request->ticket_type_id);
+            $data['earnings'] = $this->dashboardInterface->salesReportEarningCount($request->event_id,$request->ticket_type_id);
+            return apiSuccessMessage("Sales Report",$data);
+        }else{
+            return commonErrorMessage("Event Id and Ticket Type Id required");
+        }
     }
 }

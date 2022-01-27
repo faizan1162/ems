@@ -37,4 +37,9 @@ interface EventInterface extends BaseInterface
      * @return mixed
      */
     public function getEventParticipants($event_id);
+
+    /**
+     * @return mixed
+     */
+    public function getAllEventList();
 }

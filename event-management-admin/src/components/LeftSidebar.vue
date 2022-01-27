@@ -47,6 +47,12 @@
                     <p>Tickets</p>
                 </router-link>
             </li>
+             <li class="nav-item has-treeview">
+                <router-link class="nav-link" to="/sales-report">
+                    <i class="nav-icon far fa-chart-bar"></i>
+                    <p>Sales Report</p>
+                </router-link>
+            </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

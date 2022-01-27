@@ -18,6 +18,8 @@ interface DashboardInterface
     public function countTotalRevenues();
     public function countTodayRevenues();
     public function getYearlySales($year);
+    public function salesReport($event_id,$ticket_type_id);
+    public function salesReportEarningCount($event_id,$ticket_type_id);
 
 
 }

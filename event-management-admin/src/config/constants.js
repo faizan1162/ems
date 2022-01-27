@@ -92,3 +92,14 @@ export const _ADD_EVENT_TICKET = {
     access_token_required: true,
     type: REQUEST_TYPE.POST,
 };
+/** Sales Report  */
+export const _ALL_EVENT_LIST = {
+    route: API_URL + 'admin/event/list',
+    access_token_required: true,
+    type: REQUEST_TYPE.GET,
+};
+export const _SALES_REPORT = {
+    route: API_URL + 'admin/sales/report',
+    access_token_required: true,
+    type: REQUEST_TYPE.GET,
+};

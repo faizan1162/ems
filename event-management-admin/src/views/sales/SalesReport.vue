@@ -5,14 +5,14 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Ticket List</h1>
+                        <h1>Sales Report</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item">
                                 <router-link  to="/dashboard">Home</router-link>
                             </li>
-                            <li class="breadcrumb-item active">Tickets</li>
+                            <li class="breadcrumb-item active">Sales Report</li>
                         </ol>
                     </div>
                 </div>
@@ -21,14 +21,35 @@
 
         <!-- Main content -->
         <section class="content">
+            <form class="search-form" method="post" @submit.prevent="searchSalesReport">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <select name="event_id" class="form-control" required v-model="event_id">
+                                <option  v-for="(event, index) in events" :key="index" v-bind:value="event.id">{{event.event_title}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <select name="ticket_type_id" class="form-control" v-model="ticket_type_id">
+                                <option value="0">All</option>
+                                <option value="1">Silver</option>
+                                <option value="2">Gold</option>
+                                <option value="3">Platinum</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
+                    </div>
+                </div>
+             </form>
             <div class="row">
                 <div class="col-12">
                     <div class="card card-primary card-outline">
                         <div class="card-header">
-                            <h3 class="card-title">DETAILS</h3>
-                            <div class="card-tools">
-                                <button type="submit" class="btn btn-primary" @click="getAllTickets()"><i class="fas fa-sync-alt"></i></button>
-                            </div>
+                            <h3 class="card-title">Total Earnings: {{ totalEarnings }}</h3>
                         </div>
 
                         <!-- /.card-header -->
@@ -65,21 +86,21 @@
                                         <tr v-if="!isLoading && table.rows.length == 0">
                                             <td colspan="5" class="text-center">No Data Found</td>
                                         </tr>
-                                        <tr  v-for="(ticket, index) in table.rows" :key="index">
+                                        <tr  v-for="(report, index) in table.rows" :key="index">
                                             <td>{{ index+1 }}</td>
                                             <td>
                                                  <router-link
                                                :to="{
                                                     name: 'EventDetails',
-                                                    params: { slug: ticket.event_id },
+                                                    params: { slug: report.event_id },
                                                 }"
                                                 title="Event Details">
-                                                    {{ ticket.event.event_title }}
+                                                    {{ report.event.event_title }}
                                                 </router-link>
                                             </td>
-                                            <td>{{ ticket.user.full_name }}</td>
-                                            <td v-html="getEventTicketDetails(ticket.event_ticket_booking_details)"></td>
-                                            <td>{{ $helpers.utcToLocal(ticket.created_at) }}</td>
+                                            <td>{{ report.user.full_name }}</td>
+                                            <td>{{ report.event_ticket_type }}</td>
+                                            <td>{{ $helpers.utcToLocal(report.created_at) }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -98,15 +119,19 @@
     <!-- /.content-wrapper -->
 </template>
 <script>
-import { _ALL_TICEKT_BOOKINGS,ERROR_SOMETHING_WENT_WRONG } from "../../config/constants";
+import { _ALL_EVENT_LIST,_SALES_REPORT,ERROR_SOMETHING_WENT_WRONG } from "../../config/constants";
 import api from "../../http-common";
 export default {
-    name : 'TicketList',
+    name : 'SalesReport',
     data() {
         return {
-            isLoading: true,
+            isLoading: false,
             btnDisabled: false,
             isShow : false,
+            ticket_type_id: 0,
+            totalEarnings: 0,
+            events:[],
+            event_id: 1,
             table : {
                 rows: [],
                 totalRecordCount: 0,
@@ -120,21 +145,23 @@ export default {
         }
     },
     created(){
-        this.getAllTickets();
+        this.getAllEventList()
     },
     methods : {
-        async getAllTickets() {
+        async searchSalesReport() {
+            var myRoute = _SALES_REPORT.route+"?event_id="+this.event_id+"&ticket_type_id="+this.ticket_type_id;
             this.isLoading = true;
-            const response = await api.execute(_ALL_TICEKT_BOOKINGS, _ALL_TICEKT_BOOKINGS.route);
+            const response = await api.execute(_SALES_REPORT, myRoute);
             if (response && response.success == 1) {
                 this.isLoading = false;
-                if(response.data.data !== undefined){
-                    this.table.rows = response.data.data;
-                    this.table.totalRecordCount = response.data.total;
-                    this.table.next_page_url = response.data.next_page_url;
-                    this.table.prev_page_url = response.data.prev_page_url;
-                    this.table.from = response.data.from;
-                    this.table.to = response.data.to;
+                if(response.data.report.data !== undefined){
+                    this.totalEarnings = response.data.earnings;
+                    this.table.rows = response.data.report.data;
+                    this.table.totalRecordCount = response.data.report.total;
+                    this.table.next_page_url = response.data.report.next_page_url;
+                    this.table.prev_page_url = response.data.report.prev_page_url;
+                    this.table.from = response.data.report.from;
+                    this.table.to = response.data.report.to;
                     if(this.table.next_page_url == null){
                         this.table.nextDisabled = true;
                         this.table.preDisabled = true;
@@ -148,15 +175,16 @@ export default {
         },
         async nextPage(){
             this.isLoading = true;
-            const response = await api.execute(_ALL_TICEKT_BOOKINGS, this.table.next_page_url);
+            var myRoute = this.table.next_page_url+"&event_id="+this.event_id+"&ticket_type_id="+this.ticket_type_id;
+            const response = await api.execute(_SALES_REPORT, myRoute);
             if (response && response.success == 1) {
                 this.isLoading = false;
-                this.table.rows = response.data.data;
-                this.table.totalRecordCount = response.data.total;
-                this.table.next_page_url = response.data.next_page_url;
-                this.table.prev_page_url = response.data.prev_page_url;
-                this.table.from = response.data.from;
-                this.table.to = response.data.to;
+                this.table.rows = response.data.report.data;
+                this.table.totalRecordCount = response.data.report.total;
+                this.table.next_page_url = response.data.report.next_page_url;
+                this.table.prev_page_url = response.data.report.prev_page_url;
+                this.table.from = response.data.report.from;
+                this.table.to = response.data.report.to;
                 if(this.table.prev_page_url != null){
                     this.table.preDisabled = false;
                 }
@@ -171,15 +199,16 @@ export default {
         },
         async previousPage(){
             this.isLoading = true;
-            const response = await api.execute(_ALL_TICEKT_BOOKINGS, this.table.prev_page_url);
+            var myRoute = this.table.prev_page_url+"&event_id="+this.event_id+"&ticket_type_id="+this.ticket_type_id;
+            const response = await api.execute(_SALES_REPORT, myRoute);
             if (response && response.success == 1) {
                 this.isLoading = false;
-                this.table.rows = response.data.data;
-                this.table.totalRecordCount = response.data.total;
-                this.table.next_page_url = response.data.next_page_url;
-                this.table.prev_page_url = response.data.prev_page_url;
-                this.table.from = response.data.from;
-                this.table.to = response.data.to;
+                this.table.rows = response.data.report.data;
+                this.table.totalRecordCount = response.data.report.total;
+                this.table.next_page_url = response.data.report.next_page_url;
+                this.table.prev_page_url = response.data.report.prev_page_url;
+                this.table.from = response.data.report.from;
+                this.table.to = response.data.report.to;
                 if(this.table.prev_page_url == null){
                     this.table.preDisabled = true;
                 }
@@ -192,7 +221,21 @@ export default {
                 this.$toast.error(ERROR_SOMETHING_WENT_WRONG);
             }
         },
-        
+        async getAllEventList() {
+            const response = await api.execute(_ALL_EVENT_LIST, _ALL_EVENT_LIST.route);
+            if (response && response.success == 1) {
+                if(response.data !== undefined){
+                    this.events = response.data;
+                    if(this.events.length){
+                        this.event_id = this.events[0].id;
+                    }
+                }
+            } else if (response && response.success == 0) {
+                this.$toast.error(response.message);
+            } else {
+                this.$toast.error(ERROR_SOMETHING_WENT_WRONG);
+            }
+        },
         getEventTicketDetails(event_tickets){
            let etd = "";
            if(event_tickets.length){

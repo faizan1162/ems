@@ -19,14 +19,16 @@ Route::group(['prefix' => '/v1/admin/'], function () {
 Route::group(['prefix' => '/v1/admin/','middleware' => 'auth:api'] , function () {
     Route::post('logout',[\App\Http\Controllers\Api\Auth\AuthLoginController::class,'logout']);
     Route::get('dashboard',[\App\Http\Controllers\Api\DashboardController::class,'index']);
+    Route::get('sales/report',[\App\Http\Controllers\Api\DashboardController::class,'getSalesReport']);
 
     Route::post('event',[\App\Http\Controllers\Api\Event\EventController::class,'store']);
     Route::post('event/participant',[\App\Http\Controllers\Api\Event\EventController::class,'addParticipant']);
 
-    Route::get('event/{id}',[\App\Http\Controllers\Api\Event\EventController::class,'show']);
     Route::get('events',[\App\Http\Controllers\Api\Event\EventController::class,'index']);
+    Route::get('event/list',[\App\Http\Controllers\Api\Event\EventController::class,'getAllEventList']);
     Route::get('event/user/details',[\App\Http\Controllers\Api\Event\EventController::class,'getEventAndUserDetails']);
     Route::get('event/{id}/participants',[\App\Http\Controllers\Api\Event\EventController::class,'getParticipants']);
+    Route::get('event/{id}',[\App\Http\Controllers\Api\Event\EventController::class,'show']);
 
 
     Route::get('tickets',[\App\Http\Controllers\Api\Event\TicketBookingController::class,'index']);

@@ -111,8 +111,6 @@ export default {
         return {
             eventHeading: "All",
             isLoading: true,
-            isLoading2: false,
-            blockedDriverId: 0,
             btnDisabled: false,
             isShow : false,
             table : {

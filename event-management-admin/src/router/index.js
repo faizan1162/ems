@@ -7,6 +7,7 @@ import EventList from '@/views/event/EventList';
 import EventDetails from '@/views/event/EventDetails';
 import TicketList from '@/views/ticket/TicketList';
 import TicketBook from '@/views/ticket/TicketBook';
+import SalesReport from '@/views/sales/SalesReport';
 const routes = [{
         path: "/",
         component: AdminLogin,
@@ -60,6 +61,14 @@ const routes = [{
         path: "/tickets",
         name: "TicketList",
         component: TicketList,
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
+        path: "/sales-report",
+        name: "SalesReport",
+        component: SalesReport,
         meta: {
             requiresAuth: true,
         },

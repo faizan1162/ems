@@ -118,4 +118,12 @@ class EventController extends Controller
         return apiSuccessMessage("Event Details",$event);
     }
 
+    /**
+     * Return all event list for sales report search
+     */
+    public function getAllEventList(){
+        $events = $this->eventInterface->getAllEventList();
+        return apiSuccessMessage("Event List",$events);
+    }
+
 }

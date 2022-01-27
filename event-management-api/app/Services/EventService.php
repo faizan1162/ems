@@ -133,4 +133,12 @@ class EventService implements EventInterface
     public function getEventParticipants($event_id){
         return EventParticipant::with(['user'])->where('event_id',$event_id)->orderBy('id','desc')->paginate(25);
     }
+
+    public function getAllEventList()
+    {
+        // TODO: Implement getAllEventList() method.
+        return Event::select('id','event_title')->orderBy('id','desc')->get();
+    }
+
+
 }
