@@ -1,6 +1,6 @@
-export const API_URL = "http://localhost/ems/event-management-api/api/v1/";
-export const IMAGE_URL = "http://localhost/ems/event-management-api/public/assets/uploads/images/";
-export const THUMB_URL = "http://localhost/ems/event-management-api/public/assets/thumbnails/";
+export const API_URL = "http://127.0.0.1:8000/api/v1/";
+export const IMAGE_URL = "http://127.0.0.1:8000/public/assets/uploads/images/";
+export const THUMB_URL = "http://127.0.0.1:8000/public/assets/thumbnails/";
 
 export const API_LOG = true;
 export const ERROR_SOMETHING_WENT_WRONG = 'Something went wrong please try again later.';
