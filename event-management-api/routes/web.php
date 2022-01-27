@@ -16,3 +16,6 @@ Route::get('/config-cache', function () {
     \Illuminate\Support\Facades\Artisan::call('config:cache');
     return "Cache is cleared";
 });
+Route::get('/', function () {
+    return view("welcome");
+});
