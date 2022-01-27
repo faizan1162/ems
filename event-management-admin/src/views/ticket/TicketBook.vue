@@ -197,6 +197,7 @@
                         this.$toast.error(ERROR_SOMETHING_WENT_WRONG);
                     }
                 }else{
+                    this.btnDisabled = false;
                     this.$toast.error(this.ticket_selected.type+" Ticket Not Available");
                 }
             },
