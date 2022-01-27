@@ -119,8 +119,9 @@
                     if (response && response.success == 1) {
                         this.saveUser(response.data);
                         this.$toast.success(response.message);
-                        //window.location.href = '/dashboard';
                         this.$router.push({ name: "AdminDashboard" });
+                        window.location.href = '/dashboard';
+                        
                     } else if (response && response.success == 0) {
                         this.$toast.error(response.message);
                         this.btnDisabled = false;
