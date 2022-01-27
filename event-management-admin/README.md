@@ -28,13 +28,13 @@ yarn global add @vue/cli
 
 ### Change URL if required
 
-If your laravel server not run on this url: >> http://127.0.0.1:8000 
-than you need to update the some url  go to below directory anf open constants.js file 
-event-management-admin/src/config/constants.js file and update some url:
+- If your laravel server not run on this url: >> http://127.0.0.1:8000  
+- than you need to update the some url  go to below directory anf open constants.js file 
+- event-management-admin/src/config/constants.js file and update some url:
 
-export const API_URL = "http://127.0.0.1:8000/api/v1/";
-export const IMAGE_URL = "http://127.0.0.1:8000/public/assets/uploads/images/";
-export const THUMB_URL = "http://127.0.0.1:8000/public/assets/thumbnails/";
+- export const API_URL = "http://127.0.0.1:8000/api/v1/";
+- export const IMAGE_URL = "http://127.0.0.1:8000/assets/uploads/images/";
+- export const THUMB_URL = "http://127.0.0.1:8000/assets/thumbnails/";
 
 ### Run this command for node_module installation
 In your root foler open cmd prompt and run this command

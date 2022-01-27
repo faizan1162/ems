@@ -1,6 +1,6 @@
 export const API_URL = "http://127.0.0.1:8000/api/v1/";
-export const IMAGE_URL = "http://127.0.0.1:8000/public/assets/uploads/images/";
-export const THUMB_URL = "http://127.0.0.1:8000/public/assets/thumbnails/";
+export const IMAGE_URL = "http://127.0.0.1:8000/assets/uploads/images/";
+export const THUMB_URL = "http://127.0.0.1:8000/assets/thumbnails/";
 
 export const API_LOG = true;
 export const ERROR_SOMETHING_WENT_WRONG = 'Something went wrong please try again later.';
