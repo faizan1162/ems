@@ -48,6 +48,11 @@ export default {
                     }
                 ]
             }
+            // var animal = {
+            //     spicies:"birds"
+            // }
+            // var birds = Object.create(animal);
+            // console.log(birds.spicies);
             var barChartCanvas =  document.getElementById('barChart').getContext('2d');
             var barChartData = window.jQuery.extend(true, {}, areaChartData)
             var temp0 = areaChartData.datasets[0]

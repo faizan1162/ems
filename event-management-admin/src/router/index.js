@@ -8,6 +8,7 @@ import EventDetails from '@/views/event/EventDetails';
 import TicketList from '@/views/ticket/TicketList';
 import TicketBook from '@/views/ticket/TicketBook';
 import SalesReport from '@/views/sales/SalesReport';
+import AddUser from '@/views/user/AddUser';
 const routes = [{
         path: "/",
         component: AdminLogin,
@@ -21,6 +22,14 @@ const routes = [{
         path: "/dashboard",
         name: "AdminDashboard",
         component: AdminDashboard,
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
+        path: "/user/add",
+        name: "AddUser",
+        component: AddUser,
         meta: {
             requiresAuth: true,
         },

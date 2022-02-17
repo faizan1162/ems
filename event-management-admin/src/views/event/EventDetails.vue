@@ -96,9 +96,18 @@
                                 <div class="card-body box-profile">
                                     <form id="form1" role="form" method="post" @submit.prevent="addParticipant">
                                         <div class="form-group">
-                                            <select name="user_id" class="form-control" required v-model="this.user_id">
+                                            <!-- <select name="user_id" class="form-control" required v-model="this.user_id">
                                                 <option  v-for="(user, index) in users" :key="index" v-bind:value="user.id">{{user.full_name + " ("+user.email+")" }}</option>
-                                            </select>
+                                            </select> -->
+                                            <vue-select v-model="user_id" 
+                                            :options="users" 
+                                            label-by="full_name"
+                                            track-by="full_name"
+                                            value-by="id"
+                                            placeholder="Select User"
+                                            searchable
+                                            clear-on-select
+                                            close-on-select></vue-select>
                                         </div>
                                         <div class="form-group">
                                         <button class="btn btn-primary" type="submit" :disabled="btnDisabled ? true : false">
@@ -185,6 +194,7 @@
     <!-- /.content-wrapper -->
 </template>
 <script>
+import 'vue-next-select/dist/index.min.css'
 import { _ADD_EVENT_PARTICIPANT, _EVENT_DETAILS,_GET_EVENT_PARTICIPANT, ERROR_SOMETHING_WENT_WRONG } from "../../config/constants";
 import api from "../../http-common";
 export default {
@@ -199,6 +209,7 @@ export default {
             users:[],
             isShow:false,
             ticket_bookings : [],
+            searchInput : "",
             table : {
                 rows: [],
                 totalRecordCount: 0,
@@ -222,6 +233,12 @@ export default {
             if (response && response.success == 1) {
                 this.event = response.data;
                 this.users = response.data.users;
+                let opt = [];
+                this.users.map(function(value) {
+                  opt.push(value.full_name);  
+                });
+                this.options = opt;
+                console.log(this.options)
                 this.ticket_bookings = this.event.ticket_bookings;
              } else if (response && response.success == 0) {
                 this.$toast.error(response.message);

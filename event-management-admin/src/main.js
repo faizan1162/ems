@@ -2,14 +2,11 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import jQueryObj from 'jquery'
+// import jQueryObj from 'jquery'
 import 'es6-promise/auto'
 import Toaster from '@meforma/vue-toaster';
 import helpers from './helpers';
-
-
-// import 
-window.$ = window.jQuery = global.jQuery = jQueryObj;
+import VueSelect from 'vue-next-select'
 const app = createApp(App);
 // do some necessary preparations
 const toastOpt = {
@@ -24,6 +21,7 @@ const MyCustomPlugin = {
         app.config.globalProperties.$helpers = helpers
     }
 }
+app.component('vue-select', VueSelect);
 app.use(Toaster, toastOpt);
 app.use(MyCustomPlugin);
 app.use(router).use(store).mount('#app');

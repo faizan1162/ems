@@ -103,3 +103,9 @@ export const _SALES_REPORT = {
     access_token_required: true,
     type: REQUEST_TYPE.GET,
 };
+/** User Routes */
+export const _ADD_USER = {
+    route: API_URL + 'admin/user',
+    access_token_required: true,
+    type: REQUEST_TYPE.POST,
+};

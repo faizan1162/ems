@@ -18,6 +18,12 @@
                     <p>Dashboard</p>
                 </router-link>
             </li>
+             <li class="nav-item has-treeview">
+                <router-link class="nav-link" to="/user/add">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>Add User</p>
+                </router-link>
+            </li>
             <li class="nav-item has-treeview" >
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-calendar"></i>
