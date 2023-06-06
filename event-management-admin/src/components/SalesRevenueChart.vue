@@ -1,7 +1,7 @@
 <template>
      <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Revenue 2022</h3>
+            <h3 class="card-title">Revenue 2023</h3>
 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
@@ -26,7 +26,7 @@
     </div>
 </template>
 <script>
-import { Chart } from "chart.js";
+import Chart from 'chart.js/auto';
 export default {
     name: 'SalesRevenueChart',
     props: ['currentRevenue','sumRevenue'],
