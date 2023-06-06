@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Providers;
+
 use App\Contracts\CustomAuthInterface;
 use App\Contracts\DashboardInterface;
 use App\Contracts\EventInterface;
@@ -11,6 +13,7 @@ use App\Services\EventService;
 use App\Services\TicketBookingService;
 use App\Services\UserService;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,12 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(CustomAuthInterface::class,CustomAuthService::class);
-        $this->app->bind(DashboardInterface::class,DashboardService::class);
-        $this->app->bind(EventInterface::class,EventService::class);
-        $this->app->bind(UserInterface::class,UserService::class);
-        $this->app->bind(TicketBookingInterface::class,TicketBookingService::class);
-
+        $this->app->bind(CustomAuthInterface::class, CustomAuthService::class);
+        $this->app->bind(DashboardInterface::class, DashboardService::class);
+        $this->app->bind(EventInterface::class, EventService::class);
+        $this->app->bind(UserInterface::class, UserService::class);
+        $this->app->bind(TicketBookingInterface::class, TicketBookingService::class);
     }
 
     /**
@@ -37,5 +39,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        Schema::defaultStringLength(191);
     }
 }
